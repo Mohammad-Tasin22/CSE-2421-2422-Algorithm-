@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool isIdentifier(string s)
+{
+    if(!isalpha(s[0]) && s[0] != '_')
+        return false;
+    for(char c : s)
+    {
+        if(!isalnum(c) && c != '_')
+            return false;
+    }
+    
+    return true;
+
+}
+
+bool isNumber(string s)
+{
+    char c = s[i];
+    
+    bool dot = false, exp = false;
+    
+    for(int i=0;i<s.size();i++)
+    {
+        if(isdigit(c))
+           continue;
+        else if((c == '+' || c == '-') && i == 0)
+           continue;
+        else if(c == '.' && !dot)
+           dot = true;
+        else if((c == 'e' || c == 'E') && !exp){
+           exp = true;
+    
+           if(i+1 < s.size() && (s[i+1] == '+' || s[i+1] == '-'))
+              i++;
+        }
+        else
+            return false;
+        
+    }
+    return true;
+    
+    
+}
+
+int main()
+{
+     string token;
+     cout << "Enter token: ";
+     cin >> token;
+
+     if (isIdentifier(token))
+        cout << "Valid Identifier\n";
+     else if (isNumber(token))
+        cout << "Valid Number\n";
+
+     else
+        cout << "Invalid\n";
+
+}
